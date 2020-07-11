@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26d62f22f5b440ea9b81598ff37330eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bias: 0.5
+  luminosityBias: 0.5
   leftInfraRed: {fileID: 8732273256822000321}
   middleInfraRed: {fileID: 5745912106385644906}
   rightInfraRed: {fileID: 5346089808108627130}
