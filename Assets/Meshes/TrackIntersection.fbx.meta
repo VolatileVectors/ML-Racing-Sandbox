@@ -3,7 +3,12 @@ guid: 0f29dbeff9ab49a40a822e31f37a8c49
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Intersection
+    second: {fileID: 2100000, guid: 0affb878d2a9e2249b52507a5ce83576, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
