@@ -19,12 +19,15 @@ public class FollowCameraController : CameraController
 
     private void OnEnable()
     {
-        _oldFollowTargetPos = followTarget.position;
+        var target = followTarget.position;
+        var pos = transform.position;
         var rot = transform.rotation;
-        rot.SetLookRotation(followTarget.position - transform.position, Vector3.up);
+
+        _oldFollowTargetPos = target;
+
+        rot.SetLookRotation(target - pos, Vector3.up);
         transform.rotation = rot;
 
-        var pos = transform.position;
         pos += ApplyZoom(0f);
         transform.position = pos;
     }
@@ -33,8 +36,9 @@ public class FollowCameraController : CameraController
     {
         base.Update();
 
-        var movementDelta = followTarget.position - _oldFollowTargetPos;
-        _oldFollowTargetPos = followTarget.position;
+        var target = followTarget.position;
+        var movementDelta = target - _oldFollowTargetPos;
+        _oldFollowTargetPos = target;
 
         var axis = Input.GetAxis("Mouse ScrollWheel");
         if (!Mathf.Approximately(axis, 0f))
@@ -51,7 +55,7 @@ public class FollowCameraController : CameraController
             transform.RotateAround(followTarget.position, Vector3.up, Input.GetAxis("Mouse X") * freeLookSensitivity);
             var eulerX = transform.localEulerAngles.x;
             var targetEulerX = Mathf.Clamp(eulerX - Input.GetAxis("Mouse Y") * freeLookSensitivity, minPitch, maxPitch);
-            transform.RotateAround(followTarget.position, transform.right, targetEulerX - eulerX);
+            transform.RotateAround(target, transform.right, targetEulerX - eulerX);
         }
     }
 
