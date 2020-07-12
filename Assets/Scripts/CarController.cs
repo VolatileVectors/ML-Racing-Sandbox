@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
@@ -10,17 +11,17 @@ public class CarController : MonoBehaviour
 
     [Header("References")] public HeadController head;
     public LineTrackingController lineTracking;
-    public WheelCollider leftUpper;
-    public WheelCollider leftLower;
-    public WheelCollider rightUpper;
-    public WheelCollider rightLower;
+    public MotorController leftUpper;
+    public MotorController leftLower;
+    public MotorController rightUpper;
+    public MotorController rightLower;
 
     private void Update()
     {
-        leftUpper.motorTorque = leftUpperSpeed / 4096f * maxMotorSpeed;
-        leftLower.motorTorque = leftLowerSpeed / 4096f * maxMotorSpeed;
-        rightUpper.motorTorque = rightUpperSpeed / 4096f * maxMotorSpeed;
-        rightLower.motorTorque = rightLowerSpeed / 4096f * maxMotorSpeed;
+        leftUpper.SetTorque(leftUpperSpeed / 4096f * maxMotorSpeed);
+        leftLower.SetTorque(leftLowerSpeed / 4096f * maxMotorSpeed);
+        rightUpper.SetTorque(rightUpperSpeed / 4096f * maxMotorSpeed);
+        rightLower.SetTorque(rightLowerSpeed / 4096f * maxMotorSpeed);
     }
 
     public void PWM_setMotorModel(float leftUp, float leftLow, float rightUp, float rightLow)
